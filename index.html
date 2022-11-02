@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tab UI, 🎉</title>
+    <link rel="stylesheet" href="index.css" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="tabs__container">
+        <div class="tabs">
+          <button class="button" id="profile">profile</button>
+          <button class="button settings" id="settings">settings</button>
+          <button class="button options" id="options">options</button>
+        </div>
+        <div class="text">
+          <p id="first-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quod
+            asperiores nesciunt maxime molestias ducimus nisi ab sint
+            repellendus quam.
+          </p>
+          <p id="second-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. In ab
+            impedit optio mollitia quidem eius?
+          </p>
+        </div>
+      </div>
+
+      <input type="color" id="color-palette" />
+    </div>
+
+    <script>
+      const colorPalette = document.getElementById('color-palette');
+
+      const profileButton = document.getElementById('profile');
+      const settingsButton = document.getElementById('settings');
+      const optionsButton = document.getElementById('options');
+      const firstText = document.getElementById('first-text');
+      const secondText = document.getElementById('second-text');
+
+      function toggleProfilePage() {
+        let color = localStorage.getItem('color');
+        profileButton.style.backgroundColor = color;
+        profileButton.style.color = 'white';
+        firstText.textContent =
+          'Lorem ipsum dolor sit amet elit. Quas quod asperiores nesciunt maxime molestias ducimus nisi ab sint repellendus quam.';
+        secondText.textContent =
+          'Lorem ipsum dolor sit amet consectetur elit. Quas quod asperiores nesciunt maxime molestias ducimus nisi ab sint repellendus quam.';
+        settingsButton.style.backgroundColor = '#fff';
+        settingsButton.style.color = color;
+        optionsButton.style.backgroundColor = '#fff';
+        optionsButton.style.color = color;
+      }
+
+      toggleProfilePage();
+
+      function toggleSettingsPage() {
+        let color = localStorage.getItem('color');
+        settingsButton.style.backgroundColor = color;
+        settingsButton.style.color = 'white';
+        firstText.textContent =
+          'Lorem ipsum dolor sit amet consectetur. Facilis pariatur dolorem, optio hic quibusdam ea dolore consectetur adipisicing deserunt?';
+        secondText.textContent =
+          'Lorem ipsum dolor, consectetur amet consectetur. Quam veritatis quae perspiciatis minus architecto.';
+        profileButton.style.backgroundColor = '#fff';
+        profileButton.style.color = color;
+        optionsButton.style.backgroundColor = '#fff';
+        optionsButton.style.color = color;
+      }
+
+      function toggleOptionsPage() {
+        let color = localStorage.getItem('color');
+        optionsButton.style.backgroundColor = color;
+        optionsButton.style.color = 'white';
+        firstText.textContent =
+          'This is an example...... adipisicing elit. Facilis pariatur dolorem, adipisicing elit dicta aliquid natus optio hic quibusdam ea dolore deserunt?';
+        secondText.textContent =
+          'Yea, an exampleeeee...... adipisicing elit. Quam veritatis quae perspiciatis adipisicing elit assumenda minus architecto.';
+        profileButton.style.backgroundColor = '#fff';
+        profileButton.style.color = color;
+        settingsButton.style.backgroundColor = '#fff';
+        settingsButton.style.color = color;
+      }
+
+      function getColor() {
+        let color = localStorage.getItem('color');
+        colorPalette.value = color;
+      }
+
+      getColor();
+
+      function saveColor(color) {
+        localStorage.setItem('color', color);
+      }
+
+      function changeColor(e) {
+        saveColor(e.target.value);
+        profileButton.style.backgroundColor = e.target.value;
+        profileButton.style.color = '#fff';
+        settingsButton.style.backgroundColor = '#fff';
+        settingsButton.style.color = e.target.value;
+        optionsButton.style.backgroundColor = '#fff';
+        optionsButton.style.color = e.target.value;
+      }
+
+      colorPalette.addEventListener('input', changeColor);
+      profileButton.addEventListener('click', toggleProfilePage);
+      settingsButton.addEventListener('click', toggleSettingsPage);
+      optionsButton.addEventListener('click', toggleOptionsPage);
+    </script>
+  </body>
+</html>
